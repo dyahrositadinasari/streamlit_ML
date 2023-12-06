@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from ucimlrepo import fetch_ucirepo #dataset
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -17,7 +18,7 @@ def main():
 
     @st.cache(persist=True)
     def load_data():
-        data = pd.read_csv("path\\to\\mushrooms.csv")
+        data = fetch_ucirepo(id=73)
         labelencoder=LabelEncoder()
         for col in data.columns:
             data[col] = labelencoder.fit_transform(data[col])
