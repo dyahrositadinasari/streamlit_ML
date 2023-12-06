@@ -33,7 +33,7 @@ def main():
     def plot_metrics(metrics_list):
         if 'Confusion Matrix' in metrics_list:
             st.subheader("Confusion Matrix")
-            ConfusionMatrixDisplay(model, x_test, y_test, display_labels=class_names)
+            ConfusionMatrixDisplay(model, display_labels=class_names)
             st.pyplot()
 
         if 'ROC Curve' in metrics_list:
@@ -48,7 +48,6 @@ def main():
 
     df = load_data()
     class_names = ['edible', 'poisonous']
-    
     x_train, x_test, y_train, y_test = split(df)
 
     st.sidebar.subheader("Choose Classifier")
