@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
+from sklearn.metrics import ConfusionMatrixDisplay, RocCurveDisplay, precision_recall_curve
 from sklearn.metrics import precision_score, recall_score
 
 def main():
@@ -33,17 +33,17 @@ def main():
     def plot_metrics(metrics_list):
         if 'Confusion Matrix' in metrics_list:
             st.subheader("Confusion Matrix")
-            plot_confusion_matrix(model, x_test, y_test, display_labels=class_names)
+            ConfusionMatrixDisplay(model, x_test, y_test, display_labels=class_names)
             st.pyplot()
 
         if 'ROC Curve' in metrics_list:
             st.subheader("ROC Curve")
-            plot_roc_curve(model, x_test, y_test)
+            RocCurveDisplay(model, x_test, y_test)
             st.pyplot()
         
         if 'Precision-Recall Curve' in metrics_list:
             st.subheader('Precision-Recall Curve')
-            plot_precision_recall_curve(model, x_test, y_test)
+            precision_recall_curve(model, x_test, y_test)
             st.pyplot()
 
     df = load_data()
